@@ -17,6 +17,7 @@ Agenda is a Web application allowing you to manage your events (create, modify, 
    #### Clone the project
    git clone https://github.com/cybersoldattech/Agenda.git
    #### Or
+   git clone git@github.com:cybersoldattech/Agenda.git
    #### Enter in the project
    cd Agenda
    #### Put .env file and setup your database and you mail configuration and others
