@@ -12,7 +12,6 @@ document.getElementById("save_form").addEventListener('click',function(){
     }
 
 });
-
 //Foncion pour l'affichage du tableau
 
 function displayTable(){
@@ -76,21 +75,15 @@ function showDescription(i)
     $("#modalEventDescription").modal("show");
 }
 //Foncion pour la suppresion de l'evenement
-function deleteEvent(i){
-    alert('suppression Ok');
-    return;
+function deleteEvent(i){;
     let data = $("#info_event"+i).html();
     let event_json = JSON.parse(data);
     let id = event_json['ID'];
-    let form = document.forms.namedItem("event_delete");
-    let oData = new FormData(form);
     $.ajax({
         url: "/event/delete",
-        type: "POST",
-        data: oData,
+        type: "GET",
+        data: "id="+id,
         success: function(data){
-            console.log(data);
-            return;
             data_json = JSON.parse(data);
             var message = "";
             if(data_json["error"]["code"] == "0"){
