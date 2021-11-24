@@ -1,4 +1,14 @@
 
+                                                    _       
+                                                   | |      
+                          __ _  __ _  ___ _ __   __| | __ _ 
+                         / _` |/ _` |/ _ \ '_ \ / _` |/ _` |
+                        | (_| | (_| |  __/ | | | (_| | (_| |
+                         \__,_|\__, |\___|_| |_|\__,_|\__,_|
+                                __/ |                       
+                               |___/  
+
+
 ## About Agenda
 
 Agenda is a Web application allowing you to manage your events (create, modify, delete).:
