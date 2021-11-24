@@ -6,30 +6,42 @@
                 <th>Start date</th>
                 <th>End date</th>
                 <th>Creation Date</th>
-                <th>Creator</th>                        
+                <th>Creator</th>
                 <th>Action</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         @foreach ($events as $event)
-            <tr>          
-                <td>{{ $event->name }}</td>
+            @php
+                $item=array();
+                $item['ID']= $event->id;
+                $item['NAME']= $event->name;
+                $item['START_DATE']= $event->start_date;
+                $item['END_DATE']= $event->end_date;
+                $item['DESCRIPTION']= $event->description;
+                $info_data = json_encode($item, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE | JSON_FORCE_OBJECT);
+            @endphp
+            <tr>
+                <td>
+                    <textarea style='display:none;' id='info_event{{ $loop->iteration }}' name=info_event{{ $loop->iteration }}'>{{ $info_data }}</textarea>
+                    {{ $event->name }}
+                </td>
                 <td>{{ $event->start_date }}</td>
                 <td>{{ $event->end_date }}</td>
-                <td>{{ $event->name }}</td>
-                <td>{{ $event->description }}</td>
+                <td>{{ $event->created_at }}</td>
+                <td>Author</td>
                 <td>
-                    <button class="btn btn-primary">Show description </button>
+                    <button class="text-gray-300 hover:text-gray-700 bg-indigo-500 rounded-full px-2 py-2" onclick="showDescription('{{ $loop->iteration }}')">Show description </button>
                 </td>
                 <td>
-                    <button class="btn btn-warning">Modify </button>
-                    <button class="btn btn-danger"> Delete</button>
+                    <button class="btn btn-warning" onclick="modifyEvent('{{ $loop->iteration }}')">Modify </button>
+                    <button class="btn btn-danger" onclick="deleteEvent('{{ $loop->iteration }}')"> Delete</button>
                 </td>
             </tr>
         @endforeach
         </tbody>
-    </table>   
+    </table>
 @else
 <div class="py-16">
     <div class="text-center">
@@ -40,7 +52,6 @@
     </div>
 @endif
 
-<script  language="Javascript">
+<script>
 	setTimeout(function(){ $('#displayevent').DataTable(); }, 300);
-
 </script>

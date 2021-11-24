@@ -44,6 +44,6 @@
         <script src="{{ asset('datatables4/js/dataTables.responsive.min.js') }}"></script> 
         <script src="{{ asset('bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js') }}"></script>
         @stack('scripts')
-    </body>
-  
+
+    </body>  
 </html>

@@ -22,77 +22,80 @@
         </div>
 
         <div class="relative mt-20">
-            <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:gap-24 lg:items-start">        
+            <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:gap-24 lg:items-start">
                 <div id="eventTable"></div>
-          < /div>
+            </div>
         </div>
 
-            <div class="modal fade" id="myModal" role="dialog">
-              <div class="modal-dialog modal-lg">              
-                <!-- Modal content-->
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h4 class="modal-title">Add a new event</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  </div>
-                  <div class="modal-body">  
-                    <form id="event_form" method="POST" action="{{ url('/event/create') }}">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-12 mb-3">
-                                <label for="eventName">Name</label>
-                                <input type="text" class="form-control" name="eventName" id="eventName" placeholder="Event name">
-                            </div>
-                            @error('eventName')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                             @enderror
-
-                            <div class="col-md-6 mb-3 input-append date">
-                                <label for="startDate">Start name</label>
-                                <input type="text" class="form-control" id="startDate" name="startDate"   value="<?php echo date('y-d-m h:m:i'); ?>" readonly>
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                            </div>
-                            @error('startDate')
-                              <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                 
-
-                            <div class="col-md-6 mb-3  date">
-                                <label for="endDate">End date</label>
-                                <input type="text" class="form-control" id="endDate" name="endDate"  value="<?php echo date('y-d-m h:m:i'); ?>" readonly>
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                            </div>
-
-                            @error('endDate')
-                               <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                    
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Add a new event</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <form id="event_form" method="POST" action="{{ url('/event/create') }}">
+                    @csrf
+                    <input type="hidden" name="eventId" id="eventId"/>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="eventName">Name</label>
+                            <input type="text" class="form-control" name="eventName" id="eventName" placeholder="Event name"/>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12 mb-3">
-                                <label for="description">Description</label>
-                                <textarea  class="form-control" name="description" id="description" placeholder="Description"></textarea>
-                            </div>
-                        </div>
-                        @error('description')
+                        @error('eventName')
                             <div class="invalid-feedback">{{ $message }}</div>
-                         @enderror                        
-                    </form>
-                </div>
-                  <div class="modal-footer">
-                    <button type="button" id="save_form" class="bg-green-400 rounded-full px-2 py-2 font-bold text-white">Save</button>
-                    <button type="button" class="bg-red-400 rounded-full px-2 py-2 font-bold text-white" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
-                
+                         @enderror
+
+                        <div class="col-md-6 mb-3 input-append date">
+                            <label for="startDate">Start name</label>
+                            <input type="text" class="form-control" id="startDate" name="startDate"   value="<?php echo date('y-d-m h:m:i'); ?>" readonly/>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                        @error('startDate')
+                          <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+
+
+                        <div class="col-md-6 mb-3  date">
+                            <label for="endDate">End date</label>
+                            <input type="text" class="form-control" id="endDate" name="endDate"  value="<?php echo date('y-d-m h:m:i'); ?>" readonly/>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+
+                        @error('endDate')
+                           <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="description">Description</label>
+                            <textarea  class="form-control" name="description" id="description" placeholder="Description"></textarea>
+                        </div>
+                    </div>
+
+                    @error('description')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                     @enderror
+                </form>
+            </div>
+              <div class="modal-footer">
+                <button type="button" id="save_form" class="bg-green-400 rounded-full px-2 py-2 font-bold text-white">Save</button>
+                <button type="button" class="bg-red-400 rounded-full px-2 py-2 font-bold text-white" data-dismiss="modal">Close</button>
               </div>
             </div>
-            <x-subscribe />
 
+          </div>
+        </div>
+        <x-subscribe />
+        <x-modals.description/>
+        <x-form-delete/>
     </main>
 
     <x-footer />
-    
+
 @endsection
 
 @push('styles')
@@ -100,68 +103,6 @@
     <link rel="stylesheet" href="ttps://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css"/>
 @endpush
 
- @push('scripts')	
-    <script>
-         $(document).ready(function() {
-            $('.date').datepicker({ autoclose: true, }).on('changeDate', function(e) {});
-            $('#displayevent').DataTable();
-        });
-
-        document.getElementById("save_form").addEventListener('click',function(){
-            enregistrer_js();
-        });
-        
-    </script>   
-        
-    <script> 
-        function displayTable(){
-            var source = "";
-            $.ajax({
-                url: "/event/display",
-                type: "GET",
-                data: "source="+source,
-                success: function(data){		
-                    $("#eventTable").show();
-                    $("#eventTable").html(data);	
-                },
-                error: function(xhr, status, error) {
-                
-                }
-            });
-        }
-        displayTable();
-    </script>
-
-    <script>
-        function enregistrer_js(){	
-            var form = document.forms.namedItem("event_form");		
-            var oData = new FormData(form);	
-            $.ajax({
-                url: "/event/create",
-                type: "POST",
-                data: oData,
-                processData: false,
-                contentType: false,
-                success: function(data){
-                data_json = JSON.parse(data); 			
-                    var message = "";			
-                    if(data_json["error"]["code"] == "0"){
-                        message = data_json["message"]["description"]; 
-                        humane.info = humane.spawn({ addnCls: 'humane-jackedup-success', timeout: 2000 });
-                        humane.info(message);
-                        displayTable();
-                        $("#myModal").modal('hide');
-                        document.getElementById("event_form").reset(); 
-                    }else{
-                        message = data_json["error"]["description"];  
-                        humane.info = humane.spawn({ addnCls: 'humane-jackedup-error', timeout: 4000 });
-                        humane.info(message);
-                    }			                
-                },
-                error: function(xhr, status, error) {
-                    console.log("Error");
-                }
-            });        
-        }    
-     </script>
+ @push('scripts')
+     <script src="{{ asset('js/agenda.js') }}"></script>
 @endpush

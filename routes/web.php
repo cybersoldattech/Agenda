@@ -19,6 +19,6 @@ Route::get('/', function () {
 });
 
 //Route pour la creation d'un evement
-Route::post('/event/create', [AgendaController::class, 'create']);
-Route::get('/event/display', [AgendaController::class, 'displayEvent'] );
-
+Route::post('/event/create', [AgendaController::class, 'createEvent']);
+Route::get('/event/display', [AgendaController::class, 'displayEvent']);
+Route::post('/event/delete',  [AgendaController::class, 'deleteEvent']);
