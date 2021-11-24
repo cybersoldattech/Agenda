@@ -14,20 +14,21 @@
 Agenda is a Web application allowing you to manage your events (create, modify, delete).:
 
 ## Installation
-   #### clone the project
+   #### Clone the project
    git clone https://github.com/cybersoldattech/Agenda.git
-   #### enter in the project
+   #### Or
+   #### Enter in the project
    cd Agenda
-   #### put .env file and setup your database and you mail configuration and others
+   #### Put .env file and setup your database and you mail configuration and others
    cp .env.example .env
-   #### generate the project key
+   #### Generate the project key
    php artisan key:generate
-   #### install dependencies
+   #### Install dependencies
    composer install &&
    npm install
-   #### migrate your database
+   #### Migrate your database
    php artisan migrate
-   #### start you project
+   #### Start you project
    php artisan serve
    
    
