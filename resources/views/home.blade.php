@@ -41,7 +41,7 @@
                     <input type="hidden" name="eventId" id="eventId"/>
                     <div class="row">
                         <div class="col-md-12 mb-3">
-                            <label for="eventName">Name</label>
+                            <label for="eventName">Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="eventName" id="eventName" placeholder="Event name"/>
                         </div>
                         @error('eventName')
@@ -49,8 +49,8 @@
                          @enderror
 
                         <div class="col-md-6 mb-3 input-append date">
-                            <label for="startDate">Start name</label>
-                            <input type="text" class="form-control" id="startDate" name="startDate"   value="<?php echo date('y-d-m h:m:i'); ?>" readonly/>
+                            <label for="startDate">Start name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="startDate" name="startDate"   value="<?php echo now(); ?>" readonly/>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
                         @error('startDate')
@@ -59,8 +59,8 @@
 
 
                         <div class="col-md-6 mb-3  date">
-                            <label for="endDate">End date</label>
-                            <input type="text" class="form-control" id="endDate" name="endDate"  value="<?php echo date('y-d-m h:m:i'); ?>" readonly/>
+                            <label for="endDate">End date <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="endDate" name="endDate"  value="<?php echo now(); ?>" readonly/>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
 
@@ -71,7 +71,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 mb-3">
-                            <label for="description">Description</label>
+                            <label for="description">Description <span class="text-danger">*</span></label>
                             <textarea  class="form-control" name="description" id="description" placeholder="Description"></textarea>
                         </div>
                     </div>

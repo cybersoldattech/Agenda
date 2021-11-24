@@ -1,5 +1,4 @@
 <div class="relative mt-24 sm:py-16">
-
     <div aria-hidden="true" class="hidden sm:block">
         <div class="absolute inset-y-0 left-0 w-1/2 bg-gray-50 rounded-r-3xl"></div>
         <svg class="absolute top-8 left-1/2 -ml-3" width="404" height="392" fill="none" viewBox="0 0 404 392">
@@ -30,7 +29,7 @@
                 </div>
                 <form action="#" class="mt-12 sm:mx-auto sm:max-w-lg sm:flex">
                     <div class=" mt-2 min-w-0 flex-1">
-                        <label for="cta_email" class="sr-only">Email address</label>
+                        <label for="cta_email" class="sr-only">{{ __('Email address.') }}</label>
                         <input id="cta_email" type="email" class="block w-full border border-transparent rounded-md px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-pink-500" placeholder="Enter your email">
                     </div>
                     <div class="mt-2 sm:mt-0 sm:ml-3">

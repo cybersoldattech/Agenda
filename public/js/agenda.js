@@ -4,7 +4,13 @@ $(document).ready(function() {
 });
 
 document.getElementById("save_form").addEventListener('click',function(){
-    enregistrer_js();
+    if($('#eventName').val()!= "" && $('#description').val()!= "")
+    {
+        enregistrer_js();
+    }else{
+        displayAlert("Please complete all required fields",1);
+    }
+
 });
 
 //Foncion pour l'affichage du tableau
@@ -71,6 +77,8 @@ function showDescription(i)
 }
 //Foncion pour la suppresion de l'evenement
 function deleteEvent(i){
+    alert('suppression Ok');
+    return;
     let data = $("#info_event"+i).html();
     let event_json = JSON.parse(data);
     let id = event_json['ID'];
