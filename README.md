@@ -22,11 +22,11 @@ Agenda is a Web application allowing you to manage your events (create, modify, 
    cd Agenda
    #### Put .env file and setup your database and you mail configuration and others
    cp .env.example .env
-   #### Generate the project key
-   php artisan key:generate
    #### Install dependencies
    composer install &&
    npm install
+   #### Generate the project key
+   php artisan key:generate
    #### Migrate your database
    php artisan migrate
    #### Start you project
