@@ -49,8 +49,8 @@
                          @enderror
 
                         <div class="col-md-6 mb-3 input-append date">
-                            <label for="startDate">Start name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="startDate" name="startDate"   value="<?php echo now(); ?>" readonly/>
+                            <label for="startDate">Start date <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="startDate" name="startDate"   value="<?php echo date('Y/m/d');?>" readonly/>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
                         @error('startDate')
@@ -60,7 +60,7 @@
 
                         <div class="col-md-6 mb-3  date">
                             <label for="endDate">End date <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="endDate" name="endDate"  value="<?php echo now(); ?>" readonly/>
+                            <input type="text" class="form-control" id="endDate" name="endDate"  value="<?php echo date('Y/m/d'); ?>" readonly/>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
 
@@ -102,6 +102,27 @@
 
           </div>
         </div>
+
+        <div class="modal fade" id="ConfirmModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Confirmation of deletion  🔥
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p> Do you want to delete this record ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="save_form" onclick="deleteEvent();" class="bg-red-400 hover:bg-red-600 rounded-full px-2 py-2 font-bold text-white">Save</button>
+                        <button type="button" class="bg-gray-400 rounded-full px-2 py-2 font-bold text-white" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <x-subscribe />
         <x-modals.description/>
         <x-form-delete/>

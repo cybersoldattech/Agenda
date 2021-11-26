@@ -39,7 +39,7 @@
                 </td>
                 <td>
                     <button class="btn btn-warning" onclick="modifyEvent('{{ $loop->iteration }}')">Modify </button>
-                    <button class="btn btn-danger" onclick="deleteEvent('{{ $loop->iteration }}')"> Delete</button>
+                    <button class="btn btn-danger" onclick="confifmationDeleteEvent('{{ $loop->iteration }}')"> Delete</button>
                 </td>
             </tr>
         @endforeach
