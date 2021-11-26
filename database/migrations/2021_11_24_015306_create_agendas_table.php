@@ -19,6 +19,7 @@ class CreateAgendasTable extends Migration
             $table->string('start_date');
             $table->string('end_date');
             $table->text('description');
+            $table->string('participants');
             $table->timestamps();
         });
     }

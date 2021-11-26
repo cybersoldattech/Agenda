@@ -7,6 +7,7 @@
                 <th>End date</th>
                 <th>Creation Date</th>
                 <th>Creator</th>
+                <th>Participants</th>
                 <th>Action</th>
                 <th>Actions</th>
             </tr>
@@ -20,6 +21,7 @@
                 $item['START_DATE']= $event->start_date;
                 $item['END_DATE']= $event->end_date;
                 $item['DESCRIPTION']= $event->description;
+                $item['PARTICIPANTS']= $event->participants;
                 $info_data = json_encode($item, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE | JSON_FORCE_OBJECT);
             @endphp
             <tr>
@@ -31,6 +33,7 @@
                 <td>{{ $event->end_date }}</td>
                 <td>{{ $event->created_at }}</td>
                 <td>Author</td>
+                <td>{{ $event->participants }}</td>
                 <td>
                     <button class="text-gray-300 hover:text-gray-700 bg-indigo-500 rounded-full px-2 py-2" onclick="showDescription('{{ $loop->iteration }}')">Show description </button>
                 </td>

@@ -69,6 +69,7 @@
                         @enderror
 
                     </div>
+
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label for="description">Description <span class="text-danger">*</span></label>
@@ -79,6 +80,18 @@
                     @error('description')
                         <div class="invalid-feedback">{{ $message }}</div>
                      @enderror
+
+
+                    <div class="row mb-3">
+
+                        <div class="col-md-6">
+                            <label for="participants">Participants : <span class="text-danger">*</span></label>
+                            <input   class="form-control" name="participants" id="participants" placeholder="participants....."/>
+                        </div>
+                        <div class="col-md-6 mt-7">
+                            <button type="button" id="add_participants" class="bg-indigo-400 hover:bg-indigo-600 rounded-full px-2 py-2 font-bold text-white">Add</button>
+                        </div>
+                    </div>
                 </form>
             </div>
               <div class="modal-footer">

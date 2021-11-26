@@ -16,7 +16,8 @@ class AgendaController extends Controller
                 'eventName' => 'bail|required',
                 'startDate' => 'bail|required',
                 'endDate' => 'bail|required',
-                'description' => 'bail|required|max:250'
+                'description' => 'bail|required|max:250',
+                'participants' => 'bail'
             ]);
 
             if ($validator->fails()) {
@@ -32,6 +33,7 @@ class AgendaController extends Controller
                 'start_date' => $request->startDate,
                 'end_date' => $request->endDate,
                 'description' => $request->description,
+                'participants' => $request->participants
             ]);
 
             if($create){
