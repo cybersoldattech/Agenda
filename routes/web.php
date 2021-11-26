@@ -23,3 +23,4 @@ Route::get('/', function () {
 Route::post('/event/create', [AgendaController::class, 'createEvent']);
 Route::get('/event/display', [AgendaController::class, 'displayEvent']);
 Route::get('/event/delete', [AgendaController::class, 'deleteEvent']);
+Route::get('/event/addparticipants', [AgendaController::class, 'addParticipant']);

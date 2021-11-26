@@ -5,9 +5,7 @@
 @endsection
 
 @section('content')
-
     <main>
-
         <div class="md:flex md:items-center bg-gray-900 md:justify-between">
             <div class="flex-1 min-w-0 mr-4">
               <h2 class="px-4 text-2xl font-bold leading-7 text-pink-600 sm:text-3xl sm:truncate">
@@ -82,13 +80,12 @@
                      @enderror
 
 
-                    <div class="row mb-3">
-
-                        <div class="col-md-6">
+                    <div class="row mb-10">
+                        <div class="col-md-8">
                             <label for="participants">Participants : <span class="text-danger">*</span></label>
-                            <input   class="form-control" name="participants" id="participants" placeholder="participants....."/>
+                            <input class="form-control" name="participants" id="participants" placeholder="participants....."/>
                         </div>
-                        <div class="col-md-6 mt-7">
+                        <div class="col-md-2 mt-7">
                             <button type="button" id="add_participants" class="bg-indigo-400 hover:bg-indigo-600 rounded-full px-2 py-2 font-bold text-white">Add</button>
                         </div>
                     </div>
