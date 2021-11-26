@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Agenda extends Model
 {
-    protected $fillable = ['name' , 'start_date', 'end_date', 'description'];
+    protected $fillable = ['name' , 'start_date', 'end_date', 'description', 'participants'];
     use HasFactory;
 }

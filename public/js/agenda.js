@@ -2,24 +2,56 @@ $(document).ready(function() {
     $('.date').datepicker({ autoclose: true,format: 'yyyy-mm-dd'}).on('changeDate', function(e) {});
     $('#displayevent').DataTable();
 });
-
-document.getElementById("add_participants").addEventListener('click',function(){
-
-});
+buttonparticipants.style.display="none";
 let startDate  = document.getElementById("startDate").value;
 let endDate = document.getElementById("endDate").value;
 let event_json = {} ;
 let date1 = new Date(startDate);
 let date2 = new Date(endDate);
-document.getElementById("save_form").addEventListener('click',function(){
-    console.log("Start Date", date1.getTime());
+let buttonparticipants  = document.getElementById("add_participants");
+
+buttonparticipants.addEventListener('click',function(){
+    if($('#participants').val()!= "")
+    {
+        addParticipant();
+    }else{
+        displayAlert("Please fill in a participant",1);
+    }
+});
+
+function addParticipant(){
+    participants = document.getElementById("participants").value;
+    console.log(participants);
+    $.ajax({
+        url: "/event/addparticipants",
+        type: "GET",
+        data: "participants="+participants+"&id="+event_json['ID'],
+        success: function(data){
+            data_json = JSON.parse(data);
+            let message = "";
+            if(data_json["error"]["code"] == "0"){
+                message = data_json["message"]["description"];
+                displayAlert(message,0);
+                displayTable();
+                $("#participants").val("");
+            }else{
+                message = data_json["error"]["description"];
+                displayAlert(message,1);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.log(xhr);
+        }
+    });
+}
+
+
+    document.getElementById("save_form").addEventListener('click',function(){
     let sdT = date1.getTime();
     let edT = date2.getTime();
-    console.log("End date", date2.getTime());
     if(sdT > edT){
         displayAlert("The start date must be less than the end date",1);
     }
-
     if($('#eventName').val()!= "" && $('#description').val()!= "")
     {
         enregistrer_js();
@@ -41,12 +73,10 @@ function displayTable(){
             $("#eventTable").html(data);
         },
         error: function(xhr, status, error) {
-
         }
     });
 }
 displayTable();
-
 //Fonction pour l'enregistrement et la modification
 function enregistrer_js(){
     console.log("Save data");
@@ -96,7 +126,6 @@ function confifmationDeleteEvent (i)
     let data = $("#info_event"+i).html();
      event_json = JSON.parse(data);
     $("#ConfirmModal").modal("show");
-    console.log(event_json);
 }
 //Foncion pour la suppresion de l'evenement
 function deleteEvent(){
@@ -129,13 +158,15 @@ function deleteEvent(){
 //Fonction pour charger la modal
 function modifyEvent(i){
     let data = $("#info_event"+i).html();
-    let event_json = JSON.parse(data);
+     event_json = JSON.parse(data);
     document.getElementById("eventId").value = event_json['ID'];
     document.getElementById("eventName").value = event_json['NAME'];
     document.getElementById("startDate").value = event_json['START_DATE'];
     document.getElementById("endDate").value = event_json['END_DATE'];
     document.getElementById("description").value = event_json['DESCRIPTION'];
+    document.getElementById("participants").value = event_json['PARTICIPANTS'];
     document.getElementById("save_form").value = "Update";
+   buttonparticipants.style.display="block";
     $('#myModal').modal('show');
 
 }

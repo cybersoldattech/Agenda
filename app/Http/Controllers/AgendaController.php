@@ -54,6 +54,26 @@ class AgendaController extends Controller
             'events' => Agenda::get(),
         ]);
     }
+
+    public function addParticipant ()
+    {
+        $reponse["error"]["code"] = "0";
+
+        $even = Agenda::where('id',$_GET['id'])
+            ->update( ['participants' => $_GET['participants'] ]);
+
+        if($even){
+            $reponse["message"] = array();
+            $reponse["message"]["code"] = "200";
+            $reponse["message"]["description"] = "SUCCESS !!!";
+            echo json_encode($reponse, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE | JSON_FORCE_OBJECT);
+            exit;
+        }else{
+            $reponse["error"]["code"] = "1";
+        }
+    }
+
+
     public function deleteEvent(Request $request)
     {
         $reponse["error"]["code"] = "0";
