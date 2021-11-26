@@ -48,7 +48,7 @@
 
                         <div class="col-md-6 mb-3 input-append date">
                             <label for="startDate">Start date <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="startDate" name="startDate"   value="<?php echo date('Y/m/d');?>" readonly/>
+                            <input type="text" class="form-control" id="startDate" name="startDate"   value="<?php echo date('Y-m-d');?>" readonly/>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
                         @error('startDate')
@@ -58,7 +58,7 @@
 
                         <div class="col-md-6 mb-3  date">
                             <label for="endDate">End date <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="endDate" name="endDate"  value="<?php echo date('Y/m/d'); ?>" readonly/>
+                            <input type="text" class="form-control" id="endDate" name="endDate"  value="<?php echo date('Y-m-d'); ?>" readonly/>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
 

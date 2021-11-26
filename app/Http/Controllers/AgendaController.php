@@ -12,6 +12,13 @@ class AgendaController extends Controller
     public function createEvent(Request $request)
     {
             $reponse["error"]["code"] = "0";
+            if(strtotime($request->startDate) > strtotime($request->endDate)){
+                $reponse["error"]["code"] = "1";
+                $reponse["error"]["description"] = "The start date must be less than the end date";
+                echo json_encode($reponse, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE | JSON_FORCE_OBJECT);
+                exit;
+            }
+
             $validator = Validator::make($request->all(), [
                 'eventName' => 'bail|required',
                 'startDate' => 'bail|required',
@@ -24,6 +31,7 @@ class AgendaController extends Controller
                 $reponse["error"]["code"] = "1";
                 $reponse["error"]["description"] = "Validation Error check you informations";
                 echo json_encode($reponse, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE | JSON_FORCE_OBJECT);
+                exit;
             }
 
             $create = Agenda::updateOrCreate([

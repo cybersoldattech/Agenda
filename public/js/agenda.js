@@ -2,14 +2,15 @@ $(document).ready(function() {
     $('.date').datepicker({ autoclose: true,format: 'yyyy-mm-dd'}).on('changeDate', function(e) {});
     $('#displayevent').DataTable();
 });
-buttonparticipants.style.display="none";
+
 let startDate  = document.getElementById("startDate").value;
 let endDate = document.getElementById("endDate").value;
 let event_json = {} ;
-let date1 = new Date(startDate);
-let date2 = new Date(endDate);
 let buttonparticipants  = document.getElementById("add_participants");
+let start = new Date(startDate).getTime();
+let end = new Date(endDate).getTime();
 
+buttonparticipants.style.display="none";
 buttonparticipants.addEventListener('click',function(){
     if($('#participants').val()!= "")
     {
@@ -45,23 +46,22 @@ function addParticipant(){
     });
 }
 
-
-    document.getElementById("save_form").addEventListener('click',function(){
-    let sdT = date1.getTime();
-    let edT = date2.getTime();
-    if(sdT > edT){
-        displayAlert("The start date must be less than the end date",1);
-    }
-    if($('#eventName').val()!= "" && $('#description').val()!= "")
+//Action a effectuer lors du clique sur le bouton Save
+document.getElementById("save_form").addEventListener('click',function(){
+    if($('#eventName').val()!= "" && $('#description').val()!= "" && $('#participants').val()!= "")
     {
+        if(start > end){
+            displayAlert("The start date must be less than the end date",1);
+            return;
+        }
         enregistrer_js();
     }else{
         displayAlert("Please complete all required fields",1);
     }
 
 });
-
 //Fonction pour l'affichage du tableau
+
 function displayTable(){
     var source = "";
     $.ajax({
@@ -77,9 +77,9 @@ function displayTable(){
     });
 }
 displayTable();
+
 //Fonction pour l'enregistrement et la modification
 function enregistrer_js(){
-    console.log("Save data");
     let form = document.forms.namedItem("event_form");
     let oData = new FormData(form);
     $.ajax({

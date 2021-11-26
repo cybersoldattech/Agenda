@@ -21,7 +21,7 @@ class CreateAgendasTable extends Migration
             $table->text('description');
             $table->string('participants');
             $table->timestamps();
-        });
+        }); 
     }
 
     /**
